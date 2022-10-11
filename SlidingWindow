@@ -6,6 +6,9 @@ public class SlidingWindow {
 
     public static void main(String[] args) {
         System.out.println(lengthOfLongestString("abcabcd")); // returns 4
+        System.out.println();
+        int [] arr = {1,3,5,4,7};
+        System.out.println(longestSubArray(arr));   // returns 3
 
     }
 
@@ -30,3 +33,32 @@ public class SlidingWindow {
         }
        return maxLength;
      }
+     
+     /**
+     *  Sliding Window Algorithm to determine longest ascending subarray.
+     *  O(n) time complexity, O(1) space complexity
+     * @param nums
+     * @return
+     */
+     
+     public static int longestSubArray (int [] nums) {
+         // result variable will be length of longest subarray
+         int result = 0;
+
+         int anchor = 0;
+
+         for (int i = 0; i < nums.length; i++) {
+             // anchor is the BEGINNING boundary, whereas "i" is our ending boundary
+             // for our sliding window
+             if (i > 0 && nums[i - 1] >= nums[i]) {
+                 anchor = i;
+                 // i - anchor due to i being greater
+                 // anchor + 1 due to value being based on indices
+             }
+                 result = Math.max(result, i - anchor + 1);
+             }
+
+             return result;
+         }
+
+    }
