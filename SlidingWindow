@@ -1,0 +1,32 @@
+import java.util.*;
+import java.util.stream.IntStream;
+
+
+public class SlidingWindow {
+
+    public static void main(String[] args) {
+        System.out.println(lengthOfLongestString("abcabcd")); // returns 4
+
+    }
+
+    /**
+     * Sliding Window algorithm to determine longest substring of String.
+     * O(n) time complexity utilizing a HashMap
+     * @param s
+     * @return
+     */
+    
+    public static int lengthOfLongestString(String s) {
+        Map<Character, Integer> visitedChars = new HashMap<>();
+        int maxLength = 0;
+        for (int right = 0, left = 0; right < s.length(); right++) {
+            char current = s.charAt(right);
+            if (visitedChars.containsKey(current) &&
+                    visitedChars.get(current) >= left) {
+                left = visitedChars.get(current) + 1;
+            }
+            maxLength = Math.max(maxLength, right - left + 1);
+            visitedChars.put(current, right);
+        }
+       return maxLength;
+     }
