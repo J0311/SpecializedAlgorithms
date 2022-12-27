@@ -52,7 +52,7 @@ public class SlidingWindow {
              // for our sliding window
              if (i > 0 && nums[i - 1] >= nums[i]) {
                  anchor = i;
-                 // i - anchor due to i being greater
+                 //  i - anchor due to i being greater
                  // anchor + 1 due to value being based on indices
              }
                  result = Math.max(result, i - anchor + 1);
